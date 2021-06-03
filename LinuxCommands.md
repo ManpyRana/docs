@@ -1,12 +1,25 @@
 # Description
-This file contains the documentation for important linux commands.
+This file contains the documentation for important linux/unix commands.
 
-## Table of Contents
+### Table of Contents
+#### File Commands
+
  * [cat](#cat)
 
-## Cat
-To display the contents of a file. This command displays the entire contents of the file just like `more`.
+## cat
+To display the contents of a file.
 ```
-cat filename.ext
+cat filename.txt
 ```
-Another variant of this is `more filename.ext`.
+To create a new file with content. 
+```
+cat > filename.txt
+your content
+```
+To display content from multiple files.
+```
+cat file1.txt file2.txt
+```
+To Append file.
+```
+cat >> filename.txt
