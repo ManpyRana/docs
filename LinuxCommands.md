@@ -1,7 +1,7 @@
 # Description
 This file contains the documentation for important linux/unix commands.
 ## Tips and Tricks
-Bonus Tips and Tricks
+
 Use the `clear` command to clean out the terminal if it is getting cluttered with too many past commands.
 
 Try the **TAB** button to autofill what you are typing.  
@@ -10,12 +10,7 @@ For example, if you need to type Documents, begin to type a command (let’s go 
 **Ctrl+C** and **Ctrl+Z** are used to stop any command that is currently working.  
 Ctrl+C will stop and terminate the command, while Ctrl+Z will simply pause the command.
 
-If you accidental freeze your terminal by using **Ctrl+S**, simply undo this with the unfreeze **Ctrl+Q**.
-
 **Ctrl+A** moves you to the beginning of the line while **Ctrl+E** moves you to the end.
-
-You can run multiple commands in one single command by using **;** to separate them.  
-For example Command1; Command2; Command3. Or use && if you only want the next command to run when the first one is successful.
 
 You can easily learn how to use Linus Commands right from Linux’s shell by using the `man` command.   
 For instance, entering `man tail` will show the manual instruction of the tail command.
@@ -32,7 +27,6 @@ For instance, entering `man tail` will show the manual instruction of the tail c
  * [cp](#cp)
  * [mv](#mv)
  * [rm](#rm)
-
 #### Directory Commands
  * [rmdir](#rmdir)
  * [mkdir](#mkdir)
@@ -53,6 +47,40 @@ For instance, entering `man tail` will show the manual instruction of the tail c
 #### Roles and Permissions
 * [chmod](#chmod)
 * [chown](#chown)
+
+#### Search, Sort, Filter Commands
+ * [wc](#wc)
+ * [sort](#sort)
+ * [uniq](#uniq)
+ * [grep](#grep)
+
+#### Compare Files Commands
+ * [cmp](#cmp)
+ * [diff](#diff)
+ * [comm](#comm)
+
+#### Piping, tee and xargs
+ * [Piping](#piping-tee-and-xargs)
+ * [tee](#piping-tee-and-xargs)
+ * [xargs](#piping-tee-and-xargs)
+
+#### Process Management
+ * [ps](#ps)
+ * [kill](#kill)
+  
+#### Compress and Extract Files
+ * [tar](#tar)
+
+#### Useful tools
+ * [gedit](#gedit)
+ * [Putty](#putty)
+ * [WinSCP](#winscp)
+#### Additional Information
+ * [wildcard characters](#wild-card-characters---)
+ * [regular expressions](#regex)
+ * [Input Redirection](#input-output-and-error-redirection)
+ * [Output Redirection](#input-output-and-error-redirection)
+ * [Error Redirection](#input-output-and-error-redirection)
 ## cat
 To display the contents of a file.
 ```
@@ -196,23 +224,124 @@ To change the read, write, and execute permissions of files and directories.
 3 Types of Permissions :
 > Read (r) 4  
 > Write (w) 2  
-> Execute (e) 1
+> Execute (x) 1
 
 2 ways to change permissions :
 > Symbolic/ Text Mode 
-> > chmod u+x sample.txt  
-> > chmod g-r, 0-r sample.txt
+> > Add execute permission to users :
+> > > chmod u+x sample.txt 
+
+> > Rewoke read permission from groups and others : 
+> > > chmod g-r, o-r sample.txt
 
 > Numeric Mode
-> > chmod 000 sample.txt  
-> > chmod 764 sample.txt
+> > Rewoke all permissions from all roles:
+> > > chmod 000 sample.txt 
+ 
+> > Add all permissions to users, read & write to groups, read to others:
+> > >  chmod 764 sample.txt
 ## chown
 To change or transfer the ownership of a file to the specified username.
 ``` 
 chown linuxuser2 file.ext
 ```
+## wc
+## sort
+## uniq
+## cmp
+## diff
+## comm
+## Piping(|), tee and xargs
+## grep
+## ps
+## kill
+## tar
+To compress and extract files.  
+**c** - creates a new .tar archive file    
+**x** - extracts archived files  
+**v** - verbosely show the .tar file progress  
+**f** - allows to specify filename of the archive file  
+
+3 types of compression:   
+* tar
+* gunzip
+* bunzip
+
+> Compress/ Zip files   
+
+`tar -cvf mydir.tar dirToArchive`  
+`tar -cvf mydir.tar.gz dirToArchive`  
+`tar -cvf mydir.tar.bz2 dirToArchive`
+
+> Extract/ unzip files
+
+`tar -xvf mydir.tar targetLocation`  
+`tar -xvf mydir.tar.gz`  
+`tar -xvf mydir.tar.bz2` 
 
 
+## gedit
+General purpose text editor.
+```
+gedit test
+```
+## vi
+CLI mode text editor.
+```
+vi test
+```
+Important vi editor commands:  
+> 2 Modes :
+* command mode (**esc**)
+* insert mode (**i**)
+
+> Important commands: 
+* :w! --> save
+* :q! --> quit without saving
+* :wq! --> save and quit
+
+> Navigation:
+* h --> left
+* l --> right
+* j --> down
+* k --> up
+
+> handy commands:
+* dd --> delete line
+* yy, p --> copy-paste
+## Putty
+CLI mode to access linux server files from windows.
+## WinSCP
+Transfer files between your window machine and remote linux server.
+
+To connect Putty and WinSCP with the Linux server, you need to know the  ipaddress, username and password of the linux server you want to connect with from your windws machine.
+## wild card characters (?, *, [])
+**?** replaces single character.  
+**\*** replaces multiple characters.  
+**[]** replaces a range of characters.
+## REGEX
+some examples: 
+ls [a-z]* or ls [[:lower:]]*
+ls [A-Z]* or ls [[:upper:]]*
+ls [0-9]* or ls [[:digit:]]*
+ls [[:alpha:]]*.txt
+ls [![:alnum:]]*
+ls { *.java, *.py }
+
+## Input, Output and Error Redirection
+| Input | Output | Error |
+| --- | --- | --- |
+| 0 | 1 | 2|
+| < | > - overwrite, >> - append | |
+| ex: `cat 0< input.txt` | `cat 1> abc.txt` | `cal 15 2020 2> error.txt`| 
+| `cat < input.txt` | `cat > abc.txt` | |
+| `cat input.txt` | `cat >> abc.txt` | |
+|| `date > output.txt` ||
+
+You can also redirect output of one terimal to another.  
+terminal 2-->  `tty`  
+: /dev/pts/1  
+terminal 1--> `ls > /dev/pts/1`
 
 
 
