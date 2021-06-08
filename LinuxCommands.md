@@ -246,11 +246,57 @@ To change or transfer the ownership of a file to the specified username.
 chown linuxuser2 file.ext
 ```
 ## wc
+To count the number of lines, words, characters, and bytes in one or multiple files or standard input or the input from pipe.
+> Options:
+
+`wc -l` --> count no. of lines  
+`wc -w` --> count no. of words  
+`wc -c` --> count no. of bytes  
+`wc -m` --> count no. of characters
+
 ## sort
+It takes text data as input and outputs sorted data.  
+`sort test`   
+`sort -n test` --> sorts numerically  
+`sort -r test` --> sorts in reverse order
+
 ## uniq
+To remove duplicates from sorted file.  
+```
+sort test > sortedtest
+uniq sortedtest
+```
+> Options:  
+`uniq -d` --> duplicate lines  
+`uniq -u` --> unique lines  
+`uniq -c` --> each entry count   
+`uniq -i` --> case-insensitive  
 ## cmp
+To compare the two files byte by byte.
+```
+cmp file1 file2
+```
+
 ## diff
+To display the differences in the files by comparing the files line by line.
+```
+diff file1 file2
+```
+> special symbol:
+
+**<** from first file  
+**>** from second file  
+**c** change  
+**d** delete  
+**a** add  
+
 ## comm
+To compare two sorted files line by line and write to standard output; the lines that are common and the lines that are unique.
+```
+comm file1 file2
+```
+The output contains three columns where first column contains lines that are unique in file1 ,second column contains lines unique in file2 and the third column contains lines common to both the files.
+
 ## Piping(|), tee and xargs
 ## grep
 ## ps
@@ -332,7 +378,7 @@ ls { *.java, *.py }
 | Input | Output | Error |
 | --- | --- | --- |
 | 0 | 1 | 2|
-| < | > - overwrite, >> - append | |
+| < | > - overwrite, >> - append | 2> |
 | ex: `cat 0< input.txt` | `cat 1> abc.txt` | `cal 15 2020 2> error.txt`| 
 | `cat < input.txt` | `cat > abc.txt` | |
 | `cat input.txt` | `cat >> abc.txt` | |
