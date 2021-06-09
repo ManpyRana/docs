@@ -297,10 +297,84 @@ comm file1 file2
 ```
 The output contains three columns where first column contains lines that are unique in file1 ,second column contains lines unique in file2 and the third column contains lines common to both the files.
 
-## Piping(|), tee and xargs
+## Pipe(|), tee and xargs
+To send output of one command to another for further processing.
+> Syntax:    
+```
+command1 | command2 | command3
+```
+> example: 
+```
+sort filename | uniq
+```
+
+In the middle of piping if we use redirection, it will break pipe. For that we need to use **tee** with pipeline. It reads from standard input and writes simultaneously to standard output and one or many files. It’s more of a redirection command.
+> example: 
+```
+ls -l | tee output.txt | wc -l
+```
+Another important utility used with pipe is **xargs**. It reads streams of data from standard input, then generates and executes command lines.
+> example: 
+```
+cat test.txt | xargs rm
+```
+
 ## grep
+Global regular expression pattern.
+To search for a string of characters in a specified file.
+```
+grep <stringtomatch> <filename>
+```
+| options | use |
+| --- | --- |
+| -i | ignore case |
+| -n | show the line no. |
+| -c | count no. of matches |
+| -v | inverse- that do not match the search pattern |
+| -w | whole words only |
+| -l | prints file names |
+| -x | prints entire line |
+
+grep supports matching control option **-e** that allows us to define **multiple patterns** using different strings. Example :  
+```
+grep -e "Delhi" -e "Chennai" cities
+```  
+OR  use egrep  
+```
+egrep "(Delhi|Chennai)" cities
+```
+
+grep supports matching control option **-F** that instructs grep to interpret the patterns as a list of **fixed strings** (instead of regular expressions), separated by newlines. Example :   
+``` 
+grep -F "./
+> Mumbai
+> Chennai" cities
+```
+OR use fgrep
+```
+fgrep "./
+> Mumbai
+> chennai" cities
+```
+
 ## ps
+To know what all process are running. Process is an instance of running program.  
+Use `ps` to get the PID of the process. To see every process on the system **-e** & do full format listing **-f** , use below command :
+```
+ps -fe
+```
+Show process hierarchy using **-H** option.
+```
+ps -F -H
+```
+
 ## kill
+To terminate the running process.  
+Issue the `kill` command for the PID you want to terminate.  
+To terminate multiple process use option **-9**.
+```
+kill <PID>
+```
 ## tar
 To compress and extract files.  
 **c** - creates a new .tar archive file    
