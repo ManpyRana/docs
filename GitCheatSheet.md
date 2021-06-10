@@ -10,7 +10,6 @@ git config --global user.email “[valid-email]”
 ```
 git init
 git clone <URL>
-git pull
 ```
 ## Stage & Commit
 To show modified files in working directory, staged for your next commit.
@@ -29,6 +28,7 @@ To commit your staged content :
 ```
 git commit -m "descriptive message"
 ```
+
 ## Branch & Merge
 To isolate work in branches, change context, and integrate changes.  
 To list your branches, use `git branch` . A * will appear next to the currently active branch.  
@@ -36,9 +36,22 @@ To rename a branch, use `git branch -m <oldname> <newname>`
 To creat a new branch:
 ```
 git checkout -b <branchname>
+git push origin <branchname>
+
 ```
+To push changes to github: 
+```
+git push --set-upstream origin <branchname>
+```
+
 To Merge:
 ```
 git checkout main
 git merge <branchname>
 ```
+## Stay updated with remote
+To update your local repository to the newest commit :  
+```
+git pull
+```
+
