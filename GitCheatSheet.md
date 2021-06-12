@@ -30,7 +30,10 @@ To commit your staged content :
 ```
 git commit -m "descriptive message"
 ```
-
+If files are already in your local repo, you can use below command to stage and commit:
+```
+git commit -a -m "your message"
+```
 ## Branch & Merge
 To isolate work in branches, change context, and integrate changes.  
 To list your branches, use `git branch` . A * will appear next to the currently active branch.  
