@@ -1,5 +1,11 @@
 # Distributed Version Control System
 Goal :  Version | Track | Share
+
+Structure:
+* working directory
+* staging
+* snapshot in local repo
+* github remote repo
 ## Setup
 Configuring user information used across all local repositories
 ```
@@ -59,4 +65,13 @@ To update your local repository to the newest commit :
 ```
 git pull
 ```
-
+## Comparing files
+* Difference between WD and staging area: 
+```
+git diff <nameoffile>
+```
+* Difference between WD and last commit:
+```
+git diff HEAD <nameoffile>
+```
+* Difference between staged copy and last commit:
