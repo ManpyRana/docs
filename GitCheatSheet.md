@@ -75,3 +75,25 @@ git diff <nameoffile>
 git diff HEAD <nameoffile>
 ```
 * Difference between staged copy and last commit:
+```
+git diff --staged HEAD <nameoffile>
+```
+* Difference between WD and specific commit:
+```
+git diff <commitID> <filename>
+```
+To know the commit ID, use below command, which will give you all the commit IDs.
+```
+git log --oneline
+```
+* Difference between 2 branches:
+```
+git diff branch1 branch2
+```
+Note: space represents no change,  
+\+ sign represents line added,  
+\- sign represents line removed. 
+* Difference between local repo and remote repo:
+```
+git diff <localrepobranchname> origin/<branchname>
+```
