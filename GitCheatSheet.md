@@ -1,3 +1,5 @@
+# Distributed Version Control System
+Goal :  Version | Track | Share
 ## Setup
 Configuring user information used across all local repositories
 ```
