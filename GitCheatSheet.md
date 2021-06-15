@@ -56,7 +56,7 @@ Shortcut for above to commands to create and switch to a new branch:
 ```
 git checkout -b <branchname>
 ```
-To push changes to github: 
+To push new file to new branch: 
 ```
 git push --set-upstream origin <branchname>
 ```
@@ -65,6 +65,14 @@ To Merge:
 ```
 git checkout main
 git merge <branchname>
+```
+2 ways:
+1. Fast-forward merge - Changes are only done in feature branch and merged into main branch. No chance og getting any conflict into the code.
+2. Three way merge (Recursive strategy) - Changes done in feature branch. Main branch is also developing. So there are chances of conflict.
+
+## Delete Branch
+```
+git branch -d <branchname>
 ```
 ## Stay updated with remote
 To update your local repository to the newest commit :  
