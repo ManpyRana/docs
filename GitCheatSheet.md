@@ -44,11 +44,17 @@ git commit -a -m "your message"
 To isolate work in branches, change context, and integrate changes.  
 To list your branches, use `git branch` . A * will appear next to the currently active branch.  
 To rename a branch, use `git branch -m <oldname> <newname>`
-To creat a new branch:
+To create a new branch:
+```
+git branch <branchname>
+```
+To switch to the new branch:
+```
+git checkout <branchname>
+```
+Shortcut for above to commands to create and switch to a new branch:
 ```
 git checkout -b <branchname>
-git push origin <branchname>
-
 ```
 To push changes to github: 
 ```
@@ -131,11 +137,11 @@ git reset <filename>
 ```
 git reset <mode> <commitID>
 ```
-mode represents whether changes are to remove from staging area or working directory or not.
+mode represents whether changes are to remove from staging area or working directory or not. All commits above the mentioned commit ID will be removed.
 3 types of modes:
 1. mixed (default) - from local repo and staging.  
    -- `git reset <commitID>`
 2. soft - only from local repo.  
    -- `git reset --soft <commitID>`
-3. hard - changes are removed from local repo, stage and WD.
-   > `git reset --hard <commitID>`
+3. hard - changes are removed from local repo, stage and WD.  
+   -- `git reset --hard <commitID>`
