@@ -1,11 +1,15 @@
 # Distributed Version Control System
-Goal :  Version | Track | Share
+Goal :  Version | Track | Share  
+
+Github is a hosting service for git repositories.  
+Git is the tool, while GitHub is a  service to use git.
 
 Structure:
 * working directory
 * staging
 * snapshot in local repo
 * github remote repo
+  
 ## Setup
 Configuring user information used across all local repositories
 ```
@@ -19,7 +23,7 @@ git config --global user.email “[valid-email]”
 git init
 git clone <URL>
 ```
-## Stage & Commit
+## Stage, Commit and Push
 To show modified files in working directory, staged for your next commit.
 ```
 git status
@@ -39,6 +43,10 @@ git commit -m "descriptive message"
 If files are already in your local repo, you can use below command to stage and commit:
 ```
 git commit -a -m "your message"
+```
+After commit, push your code to remote main branch.
+```
+git push origin main
 ```
 ## Branch & Merge
 To isolate work in branches, change context, and integrate changes.  
@@ -67,13 +75,30 @@ git checkout main
 git merge <branchname>
 ```
 2 ways:
-1. Fast-forward merge - Changes are only done in feature branch and merged into main branch. No chance og getting any conflict into the code.
-2. Three way merge (Recursive strategy) - Changes done in feature branch. Main branch is also developing. So there are chances of conflict.
+1. Fast-forward merge   
+    Linear flow.    
+    Changes are only done in feature branch and merged into main branch. No chance og getting any conflict into the code.  
+
+2. Three way merge (Recursive strategy)   
+    Non- linear flow.  
+    Changes done in feature branch. Main branch is also developing. So there are chances of conflict. New Merge commit will be created and you have to resolve the commit manually.
 
 ## Delete Branch
 ```
 git branch -d <branchname>
 ```
+## Rebase
+Rebase is a 2 step process.
+1. Rebase your feature code on top of main branch.
+```
+git rebase main
+```
+2. Merge feature branch into main.
+```
+git merge feature
+```
+Try to use rebase only on local environment. Not recommended in remote repo because new commits are created when you rebase. History will not be maintained. Commit IDs are deleted. 
+
 ## Stay updated with remote
 To update your local repository to the newest commit :  
 ```
