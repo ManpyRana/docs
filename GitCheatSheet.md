@@ -97,3 +97,45 @@ Note: space represents no change,
 ```
 git diff <localrepobranchname> origin/<branchname>
 ```
+## Removing files
+Use `git ls-files` to check what all files are added in your staged copy.
+* Remove files from both staging and WD:
+```
+git rm <filename>
+```
+* Remove all the files from both staging and WD:
+```
+git rm -r
+```
+* Remove files only from staging:
+```
+git rm --cached <filename>
+```
+* Remove files only from WD:
+```
+rm <filename>
+```
+## Undo changes
+To discard unstaged changes in the tracked files of working directory.  
+Tracked files - Files that are added to the staging or local repo atleast.  
+Unstaged changes - which are not added to staging area yet.
+```
+git checkout -- <filename>
+```
+## Reset Command
+* To remove changes from staging area.
+```
+git reset <filename>
+```
+* To undo commits at repository level.
+```
+git reset <mode> <commitID>
+```
+mode represents whether changes are to remove from staging area or working directory or not.
+3 types of modes:
+1. mixed (default) - from local repo and staging.  
+   -- `git reset <commitID>`
+2. soft - only from local repo.  
+   -- `git reset --soft <commitID>`
+3. hard - changes are removed from local repo, stage and WD.
+   > `git reset --hard <commitID>`
