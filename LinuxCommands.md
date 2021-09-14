@@ -441,11 +441,11 @@ To connect Putty and WinSCP with the Linux server, you need to know the  ipaddre
 **[]** replaces a range of characters.
 ## REGEX
 some examples: 
-ls [a-z]* or ls [[:lower:]]*
-ls [A-Z]* or ls [[:upper:]]*
-ls [0-9]* or ls [[:digit:]]*
-ls [[:alpha:]]*.txt
-ls [![:alnum:]]*
+ls [a-z]* or ls [[:lower:]]*  
+ls [A-Z]* or ls [[:upper:]]*  
+ls [0-9]* or ls [[:digit:]]*  
+ls [[:alpha:]]*.txt  
+ls [![:alnum:]]*  
 ls { *.java, *.py }
 
 ## Input, Output and Error Redirection
