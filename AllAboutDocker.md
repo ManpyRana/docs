@@ -7,7 +7,9 @@
   - [Docker vs Virtual Machines](#docker-vs-virtual-machines)
   - [Why use Docker?](#why-use-docker)
   - [Docker Container Lifecycle Management:](#docker-container-lifecycle-management)
-  - [Create, Run, Pause, Stop And Delete](#create-run-pause-stop-and-delete)
+    - [Create, Run, Pause, Stop And Delete](#create-run-pause-stop-and-delete)
+  - [Docker Commands](#docker-commands)
+  - [Docker Selenium Grid(Hub and Nodes)](#docker-selenium-gridhub-and-nodes)
 
 ## Virtualization
 
@@ -67,4 +69,67 @@ It checks all the boxes:
 * Faster turnaround for changes when they are made to a master image and then distributed
 
 ## Docker Container Lifecycle Management:   
-## Create, Run, Pause, Stop And Delete
+### Create, Run, Pause, Stop And Delete
+
+## Docker Commands
+| Basic | Images | Containers | System |  
+|---|---|---|---|
+|version | images | ps | stats|
+|--v | pull | run | system df|
+| info | rmi | start | system prune -f|
+|--help| | stop||
+|login||||
+|logout|||
+
+example :   
+1. To remove the stopped containers :  
+   `docker system prune -f`  
+
+2. To create container based on image :  
+   `docker run -it <image>`
+
+3. To know running containers :  
+   `docker ps`
+
+4. To pull image :  
+   `docker pull <image_from_dockerhub>`
+
+## Docker Selenium Grid(Hub and Nodes)
+https://github.com/SeleniumHQ/docker-selenium
+
+download *docker-compose.yml* file from the above official link and open cmd from the same location the file is put in.
+To start the grid :  
+`docker-compose up`  
+To stop the grid :  
+`docker-compose down`
+
+Selenium script for remote connection for Docker Selenium Grid:  
+```
+  DesiredCapabilities dc= DesiredCapabilities.chrome();  
+  URL url= new URL(" http://localhost:4444/wd/hub");  
+  RemoteWebDriver driver= new RemoteWebDriver(url,dc);
+```
+Steps :
+
+1. Invoke Selenium Grid Server in Docker environment using Batch file.
+2. Run Batch file using Java Code.  
+   To start :  
+   ```
+   Runtime.getRuntime().exec("cmd /c start start_dockergrid.bat");
+   ```  
+   To stop :  
+   ```
+   Runtime.getRuntime().exec("cmd /c start stop_dockergrid.bat");
+   Thread.sleep(5000);  
+   Runtime.getRuntime().exec("taskkill /f /im cmd.exe"); // closes command prompt
+    ```
+3. Run tests using Maven *pom.xml* by adding below plugins :  
+   **maven-compiler-plugin**  
+   **maven-surefire-plugin**
+4. Integrate Docker Selenium Grid with Jenkins.  
+You can download *.war* Generic Java Package for jenkins from official site and run the command in cmd : ` java -jar jenkins.war`  
+You can manually put the source code in *.jenkins* folder or can use version control for source code management. Run the project by using *mvn clean install* command.
+
+
+
+
