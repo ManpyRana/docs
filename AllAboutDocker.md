@@ -13,6 +13,8 @@
   - [Docker Commands](#docker-commands)
   - [Docker Selenium Grid(Hub and Nodes)](#docker-selenium-gridhub-and-nodes)
   - [Port Binding](#port-binding)
+  - [Bind Mount & Docker Volumes](#bind-mount--docker-volumes)
+  - [Docker Network](#docker-network)
 
 ## Virtualization
 
@@ -157,5 +159,56 @@ Example:
 Map TCP port 80 in the container to port 8080 on the Docker host.  
 `-p 8080:80`
 
+## Bind Mount & Docker Volumes
+By default all files created inside a container are stored on a writable container layer. This means that the data doesn’t persist when that container no longer exists, and it can be difficult to get the data out of the container if another process needs it.
+
+Docker has two options for containers to store files in the host machine, so that the files are persisted even after the container stops: volumes, and bind mounts. 
 
 
+**Bind mounts** may be stored anywhere on the host system. They may even be important system files or directories. Non-Docker processes on the Docker host or a Docker container can modify them at any time.
+
+`docker run -v <Local-Storage-absolute-path>:<Container-Storage> <image-name>`  
+To check is mount is done properly, inspect the image and look for mounts. You can also copy environment paths-data by this command.   
+`docker inspect <image-name>`  
+Interact with the container using:  
+`docker exec -it -user 0 <container-id> sh`  
+
+
+
+
+**Volumes** are stored in a part of the host filesystem which is managed by Docker (/var/lib/docker/volumes/ on Linux). Non-Docker processes should not modify this part of the filesystem. Volumes are the best way to persist data in Docker.  
+Volumes are stored in the Linux VM rather than the host, which means that the reads and writes have much lower latency and higher throughput.
+Docker Volume Commands:  
+1. `docker volume create <volume-name>`
+2. `docker colume prune` //it removes all unused local volume
+3. `docker volume inspect <volume-name>`
+4. `docker volume ls`
+5. `docker volume rm <volume-name>`
+
+`docker run -v <Docker-Volume>:<Container-storage> <image-name>`
+
+## Docker Network
+ Docker containers and services are so powerful that you can connect them together, or connect them to non-Docker workloads. Docker’s networking subsystem is pluggable, using drivers:
+ 1. Bridge  
+It is the default network driver. You can also create user-defined bridge network. **User-defined bridge networks** are best when you need multiple containers to communicate on the same Docker host
+
+ 2. Host  
+ To uses the host's networking directly and removes network isolation between the container and the Docker host, 
+ 3. None  
+ It run in full isolated mode with no Port and IP address. It is useful when running any batch jobs.
+
+ Docker Network Commands:  
+ * `docker network ls`
+ * `docker network create <network-name>`
+ * `docker network inspect <network-name>`
+ * `docker network rm <network-name>`
+ * `docker network connect/disconnect <network-name>`
+ * `docker network prune`
+ * `docker run --network=<driver-name> <image-id>`
+
+ User-Defined Bridge network advantages over default bridge network:  
+ |Default Bridge Network|User-defined bridge network|
+ |---|---|
+ |can only be accessed(ping) via IP address| can be accessed by IP address and name|
+ |Risky. Any unrealted container can talk| Scoped. Only attached containers can talk|
+ |To detach, need to stop container first| Easy to attach and detach| 
