@@ -122,7 +122,10 @@ To start the grid :
 `docker-compose up`  
 To stop the grid :  
 `docker-compose down`
-
+To scale up:
+`docker-compose up -d --scale <service>=<number>`  
+Example:  
+`docker-compose up -d --sacle chrome=4`
 Selenium script for remote connection for Docker Selenium Grid:  
 ```
   DesiredCapabilities dc= DesiredCapabilities.chrome();  
