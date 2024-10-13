@@ -1,10 +1,23 @@
+- [Distributed Version Control System](#distributed-version-control-system)
+  - [Setup](#setup)
+  - [Initialise \& Clone](#initialise--clone)
+  - [Stage, Commit and Push](#stage-commit-and-push)
+  - [Branch \& Merge](#branch--merge)
+  - [Delete Branch](#delete-branch)
+  - [Rebase](#rebase)
+  - [Stay updated with remote](#stay-updated-with-remote)
+  - [Comparing files](#comparing-files)
+  - [Removing files](#removing-files)
+  - [Undo changes](#undo-changes)
+  - [Reset Command](#reset-command)
+
 # Distributed Version Control System
 Goal :  Version | Track | Share  
 
 Github is a hosting service for git repositories.  
 Git is the tool, while GitHub is a  service to use git.
 
-Structure:
+STRUCTURE:
 * working directory
 * staging
 * snapshot in local repo
